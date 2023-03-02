@@ -20,14 +20,14 @@ conn = mysql.connector.connect(user='root', password='',
                                buffered = True)
 cursor = conn.cursor()
 
-#Search state database
-@app.route('/searchSTATE/<searchState>')
-def searchstate(searchState):
+#Search zipcode database
+@app.route('/searchzipcode/<searchzipcode>')
+def searchzipcode(searchzipcode):
     # Get data from database
-    cursor.execute("SELECT * FROM `states` WHERE State=%s", [searchState])
+    cursor.execute("SELECT * FROM `zipcode` WHERE zipcode=%s", [searchzipcode])
     test = cursor.rowcount
     if test != 1:
-        return searchState + " was not found"
+        return searchzipcode + " was not found"
     else:
         searched = cursor.fetchall()
         return 'Success! Here you go: %s' % searched
